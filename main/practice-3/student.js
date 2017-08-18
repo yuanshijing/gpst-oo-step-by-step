@@ -5,6 +5,7 @@ module.exports = class Student extends Person {
         super(name, age);
         this.clazz = clazz;
     }
+    
     introduce() {
         let message = super.introduce() + ` I am a Student. `
         if(this.clazz.leader === this) {
