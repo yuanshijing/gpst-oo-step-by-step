@@ -9,9 +9,9 @@ module.exports = class Student extends Person {
     introduce() {
         let message = super.introduce() + ` I am a Student. `
         if(this.clazz.leader === this) {
-            message += `I am Leader of Class ${this.clazz}.`;
+            message += `I am Leader of Class ${this.clazz.number}.`;
         } else if (this.clazz.student === this) {
-            message += `I am a Student. I am at Class ${this.clazz}.`;
+            message += `I am at Class ${this.clazz.number}.`;
         } else {
             message += `I haven't been allowed to join Class.`;
         }
