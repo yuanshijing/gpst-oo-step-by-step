@@ -5,27 +5,26 @@ module.exports = class Class {
         this.number = number;
     }
 
-    addTeacher(teacher) {
-        this.teachers.push(teacher);
+    hasStudent(student) {
+        if (this.students.includes(student))
+            return true;
+        else
+            return false;
     }
 
     appendMember(student) {
-        this.student = student;
+        this.students.push(student);
+        this.teachers.forEach((teacher) =>teacher.notifyStudentAppended(student));
     }
 
-    isIn(student) {
-        return student.clazz === this;
-    }
-    
+
     assignLeader(student) {
-        if (this.students.indexOf(student) !== -1) {
+        if (this.hasStudent(student)) {
             this.leader = student;
-            this.teachers.forEach((teacher) => {
-                teacher.notifyLeaderAssigned(student, this);
-            }, this);
+            this.teachers.forEach((teacher) => teacher.notifyLeaderAssigned(student));
             return `Assign team leader successfully.`
         } else {
-            console.log("It is not one of us.");
+            return `It is not one of us.`;
         }
     }
 }

@@ -19,18 +19,18 @@ module.exports = class Teacher extends Person {
     }
     
     isTeaching(student) {
-        for(let i of this.clazzes) {
-            if(i.isIn(student))
+        for(let clazz of this.clazzes) {
+            if(clazz.hasStudent(student))
                 return true;
         }
         return false;
     }
     
-    notifyStudentAppended(student, clazz) {
+    notifyStudentAppended(student) {
         console.log(`${student.name} has joined Class ${clazz.number}.`);
     }
     
-    notifyLeaderAssigned(student, clazz) {
+    notifyLeaderAssigned(student) {
         console.log(`${student.name} become Leader of Class ${clazz.number}.`);
     }
 }
