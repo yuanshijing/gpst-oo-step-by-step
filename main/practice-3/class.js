@@ -1,4 +1,6 @@
-module.exports = class Class {
+
+
+class Class {
     constructor(number) {
         this.students = [];
         this.teachers = [];
@@ -6,6 +8,7 @@ module.exports = class Class {
     }
 
     hasStudent(student) {
+     
         if (this.students.includes(student))
             return true;
         else
@@ -14,17 +17,20 @@ module.exports = class Class {
 
     appendMember(student) {
         this.students.push(student);
-        this.teachers.forEach((teacher) =>teacher.notifyStudentAppended(student));
+        this.teachers.forEach((teacher) =>teacher.notifyStudentAppended(`${student.name} has joined Class ${this.number}`));
     }
 
 
     assignLeader(student) {
         if (this.hasStudent(student)) {
             this.leader = student;
-            this.teachers.forEach((teacher) => teacher.notifyLeaderAssigned(student));
+            this.teachers.forEach((teacher) => teacher.notifyLeaderAssigned(`${student.name} become Leader of Class ${this.number}`));
             return `Assign team leader successfully.`
         } else {
             return `It is not one of us.`;
         }
     }
 }
+
+module.exports = Class;
+

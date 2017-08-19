@@ -4,6 +4,13 @@ module.exports = class Teacher extends Person {
     constructor(name, age, clazzes) {
         super(name, age);
         this.clazzes = clazzes;
+        this.id = '00' + parseInt(Math.random() * 1000 + 1);
+        this.joinClazz();
+    }
+
+    joinClazz() {
+        for (let clazz of this.clazzes)
+            clazz.teachers.push(this);
     }
     
     introduce() {
@@ -19,18 +26,16 @@ module.exports = class Teacher extends Person {
     }
     
     isTeaching(student) {
-        for(let clazz of this.clazzes) {
-            if(clazz.hasStudent(student))
-                return true;
-        }
-        return false;
+        return this.clazzes.some((clazz) => {
+           return clazz.hasStudent(student)
+        })
     }
     
-    notifyStudentAppended(student) {
-        console.log(`${student.name} has joined Class ${clazz.number}.`);
+    notifyStudentAppended(message) {
+        console.log(`${message}`);
     }
     
-    notifyLeaderAssigned(student) {
-        console.log(`${student.name} become Leader of Class ${clazz.number}.`);
+    notifyLeaderAssigned(message) {
+        console.log(`${message}`);
     }
 }
